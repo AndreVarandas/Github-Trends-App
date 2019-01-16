@@ -64,6 +64,20 @@ export default class LinksScreen extends React.Component {
   }
 
   /**
+   * Render a simple error message to the user
+   *
+   * @returns {JSX} A simple element to render in the screen.
+   */
+  showErrorMessages() {
+    const { hasError } = this.state;
+    if (hasError) {
+      return <Text>Unable to show results.</Text>;
+    }
+
+    return null;
+  }
+
+  /**
    * Renders the refresh control.
    *
    * @returns {JSX} A refresh control element.
@@ -78,19 +92,10 @@ export default class LinksScreen extends React.Component {
   }
 
   /**
-   * Render a simple error message to the user
+   * Render the Developers screen
    *
-   * @returns {JSX} A simple element to render in the screen.
+   * @returns {JSX} The element to render
    */
-  showErrorMessages() {
-    const { hasError } = this.state;
-    if (hasError) {
-      return <Text>Unable to show results.</Text>;
-    }
-
-    return null;
-  }
-
   render() {
     const { developers } = this.state;
     return (

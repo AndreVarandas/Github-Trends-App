@@ -135,6 +135,7 @@ export default class RepositoriesScreen extends React.Component {
             <Separator />
 
             <RepositoryList
+              navigation={this.props.navigation}
               style={{
                 marginLeft: -Dimensions.extraSmallMargin,
                 marginRight: -Dimensions.extraSmallMargin,

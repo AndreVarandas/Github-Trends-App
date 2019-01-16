@@ -1,20 +1,24 @@
 import React from 'react';
+import { TouchableHighlight } from 'react-native';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import Card from '../common/Card';
 import { Dimensions } from '../../constants';
 
-const RepositoryListItem = ({ repository }) => (
+const RepositoryListItem = ({ repository, navigation }) => (
   <RepositoryItem>
-    <Card
-      style={{ margin: Dimensions.extraSmallMargin }}
-      titleMaxLines={2}
-      bodyMaxLines={5}
-      title={repository.name}
-      body={repository.description}
-    />
+    <TouchableHighlight onPress={() => navigation.navigate('RepositoryDetails')}>
+      <Card
+        style={{ margin: Dimensions.extraSmallMargin }}
+        titleMaxLines={2}
+        bodyMaxLines={5}
+        title={repository.name}
+        body={repository.description}
+      />
+    </TouchableHighlight>
   </RepositoryItem>
+
 );
 
 const RepositoryItem = styled.View`
@@ -23,6 +27,7 @@ const RepositoryItem = styled.View`
 
 RepositoryListItem.propTypes = {
   repository: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
 };
 
 export default RepositoryListItem;

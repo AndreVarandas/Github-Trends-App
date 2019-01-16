@@ -7,7 +7,7 @@ import RepositoryListItem from './RepositoryListItem';
 const RepositoryList = props => (
   <RepositoryListHolder {...props}>
     {props.repositories.map(repo => (
-      <RepositoryListItem key={repo.url} repository={repo} />
+      <RepositoryListItem navigation={props.navigation} key={repo.url} repository={repo} />
     ))}
   </RepositoryListHolder>
 );
@@ -21,6 +21,7 @@ const RepositoryListHolder = styled.View`
 
 RepositoryList.propTypes = {
   repositories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  navigation: PropTypes.object.isRequired,
 };
 
 export default RepositoryList;
