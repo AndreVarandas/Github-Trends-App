@@ -3,10 +3,17 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import Card from '../common/Card';
+import { Dimensions } from '../../constants';
 
 const RepositoryListItem = ({ repository }) => (
   <RepositoryItem>
-    <Card title={repository.name} body={repository.description} />
+    <Card
+      style={{ margin: Dimensions.extraSmallMargin }}
+      titleMaxLines={2}
+      bodyMaxLines={5}
+      title={repository.name}
+      body={repository.description}
+    />
   </RepositoryItem>
 );
 

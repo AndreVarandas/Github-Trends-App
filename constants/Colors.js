@@ -1,6 +1,6 @@
-const tintColor = '#2f95dc';
+const tintColor = 'rgb(17,17,17)';
 const backgroundColor = '#fff';
-const darkerBackgroundColor = '#fafafa';
+const darkerBackgroundColor = '#f2f2f2';
 const shade = '#c3c3c3';
 
 export default {
@@ -18,4 +18,5 @@ export default {
   noticeBackground: tintColor,
   noticeText: '#fff',
   textColor: 'rgb(17,17,17)',
+  textColorLight: '#888',
 };

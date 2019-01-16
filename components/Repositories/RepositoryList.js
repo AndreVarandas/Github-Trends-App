@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import RepositoryListItem from './RepositoryListItem';
 
-const RepositoryList = ({ repositories }) => (
-  <RepositoryListHolder>
-    {repositories.map(repo => (
+const RepositoryList = props => (
+  <RepositoryListHolder {...props}>
+    {props.repositories.map(repo => (
       <RepositoryListItem key={repo.url} repository={repo} />
     ))}
   </RepositoryListHolder>
@@ -15,8 +15,8 @@ const RepositoryList = ({ repositories }) => (
 const RepositoryListHolder = styled.View`
   flex: 1;
   flex-wrap: wrap;
-  align-items: flex-start;
   flex-direction: row;
+  align-items: flex-start;
 `;
 
 RepositoryList.propTypes = {

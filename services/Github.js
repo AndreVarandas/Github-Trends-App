@@ -7,31 +7,25 @@ import {
 export default class Github {
   static async getAllTrendingLanguages() {
     try {
-      const data = await fetchAllLanguages();
-      return data;
+      return await fetchAllLanguages();
     } catch (error) {
-      console.log('Unable to fetch data');
-      return undefined;
+      return null;
     }
   }
 
   static async getAllTrendingRepositories() {
     try {
-      const data = await fetchRepositories();
-      return data;
+      return await fetchRepositories();
     } catch (error) {
-      console.log('Unable to fetch data');
-      return undefined;
+      return null;
     }
   }
 
   static async getAllTrendingDevelopers() {
     try {
-      const data = await fetchDevelopers();
-      return data;
+      return await fetchDevelopers();
     } catch (error) {
-      console.log('Unable to fetch data');
-      return undefined;
+      return null;
     }
   }
 }

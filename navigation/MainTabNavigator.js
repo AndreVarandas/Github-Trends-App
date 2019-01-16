@@ -8,6 +8,7 @@ import {
 import { TabBarIcon } from '../components/common';
 import RepositoriesScreen from '../screens/RepositoriesScreen';
 import DevelopersScreen from '../screens/DevelopersScreen';
+import Colors from '../constants/Colors';
 
 const RepositoriesStack = createStackNavigator({
   Repositories: RepositoriesScreen,
@@ -18,11 +19,7 @@ RepositoriesStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
+      name={Platform.OS === 'ios' ? 'ios-code' : 'md-code'}
     />
   ),
 };
@@ -34,14 +31,20 @@ const DevelopersStack = createStackNavigator({
 DevelopersStack.navigationOptions = {
   tabBarLabel: 'Developers',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
+    <TabBarIcon focused={focused} name="logo-github" />
   ),
 };
 
-export default createBottomTabNavigator({
-  RepositoriesStack,
-  DevelopersStack,
-});
+const bottomTabNavigatorConfigs = {
+  tabBarOptions: {
+    activeTintColor: Colors.tintColor,
+  },
+};
+
+export default createBottomTabNavigator(
+  {
+    RepositoriesStack,
+    DevelopersStack,
+  },
+  bottomTabNavigatorConfigs,
+);
