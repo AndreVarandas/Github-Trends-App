@@ -11,7 +11,7 @@ import Separator from '../components/common/Separator';
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
-    title: 'Links',
+    title: 'Developers',
     headerStyle: { borderBottomWidth: 0 },
   };
 

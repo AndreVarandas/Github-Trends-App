@@ -32,14 +32,15 @@ const ListItem = styled.View`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  marginTop: ${Dimensions.smallMargin}px;
-  marginBottom: ${Dimensions.smallMargin}px;
+  margin-top: ${Dimensions.smallMargin}px;
+  margin-bottom: ${Dimensions.smallMargin}px;
 `;
 
 const ListItemDetail = styled.View`
   flex: 1;
   justify-content: center;
-  margin: ${Dimensions.smallMargin}px ${Dimensions.smallMargin}px ${Dimensions.smallMargin}px ${Dimensions.defaultMargin}px;
+  margin: ${Dimensions.smallMargin}px ${Dimensions.smallMargin}px
+    ${Dimensions.smallMargin}px ${Dimensions.defaultMargin}px;
 `;
 
 const Avatar = styled.Image`

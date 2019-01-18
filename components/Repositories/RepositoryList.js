@@ -7,7 +7,11 @@ import RepositoryListItem from './RepositoryListItem';
 const RepositoryList = props => (
   <RepositoryListHolder {...props}>
     {props.repositories.map(repo => (
-      <RepositoryListItem navigation={props.navigation} key={repo.url} repository={repo} />
+      <RepositoryListItem
+        navigation={props.navigation}
+        key={repo.url}
+        repository={repo}
+      />
     ))}
   </RepositoryListHolder>
 );

@@ -153,12 +153,12 @@ export default class RepositoriesScreen extends React.Component {
 
 const Wrapper = styled.SafeAreaView`
   flex: 1;
-  backgroundColor: ${Colors.backgroundColor};
+  background-color: ${Colors.backgroundColor};
 `;
 
 const Container = styled.View`
   flex: 1;
-  backgroundColor: ${Colors.backgroundColor};
+  background-color: ${Colors.backgroundColor};
 `;
 
 const ScrolledView = styled.ScrollView.attrs({
