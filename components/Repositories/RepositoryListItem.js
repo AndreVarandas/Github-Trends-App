@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -11,7 +11,7 @@ const RepositoryListItem = ({ repository, navigation }) => (
   <RepositoryItem>
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={() => navigation.navigate('RepositoryDetails')}
+      onPress={() => navigation.navigate('RepositoryDetails', { repository })}
     >
       <Card content={<CardContent repository={repository} />} />
     </TouchableOpacity>
@@ -21,9 +21,11 @@ const RepositoryListItem = ({ repository, navigation }) => (
 const CardContent = ({ repository }) => {
   return (
     <CardBody>
-      <Title fontSize="24px">{repository.name}</Title>
-      <CardText>
-        {repository.description || '🔎 - This project has no description.'}
+      <Title numberOfLines={1} fontSize="24px">
+        {repository.name}
+      </Title>
+      <CardText numberOfLines={3}>
+        {repository.description || '🔎 This project has no description.'}
       </CardText>
       <BadgeContent repository={repository} />
     </CardBody>
@@ -46,6 +48,7 @@ const CardBody = styled.View`
 const CardText = styled.Text`
   flex: 1;
   font-size: 16px;
+  line-height: 25;
   color: ${Colors.textColorLight};
   margin: ${Dimensions.smallMargin}px 0 ${Dimensions.smallMargin}px 0;
 `;

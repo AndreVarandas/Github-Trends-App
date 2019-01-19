@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Text, RefreshControl } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Github from '../services/Github';
 
@@ -13,7 +14,7 @@ import StorageService from '../services/Storage.service';
  * This is the home screen, the main screen that is presented to
  * the user when the application is first launched.
  */
-export default class RepositoriesScreen extends React.Component {
+class RepositoriesScreen extends React.Component {
   /**
    * Header navigation configurations
    *
@@ -170,3 +171,9 @@ const ScrolledView = styled.ScrollView.attrs({
 })`
   flex: 1;
 `;
+
+RepositoriesScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
+export default RepositoriesScreen;

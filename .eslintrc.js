@@ -7,5 +7,6 @@ module.exports = {
     'react/forbid-prop-types': 0,
     'react/destructuring-assignment': 0,
     'arrow-body-style': 0,
+    'no-underscore-dangle': 0,
   },
 };
