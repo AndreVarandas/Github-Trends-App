@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 
-class StorageService {
+class Storage {
   static async saveItem(key, item) {
     try {
       return await AsyncStorage.setItem(key, item);
@@ -26,4 +26,4 @@ class StorageService {
   }
 }
 
-export default StorageService;
+export default Storage;

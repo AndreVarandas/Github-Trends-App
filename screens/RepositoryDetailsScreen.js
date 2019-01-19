@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { Dimensions, Colors } from '../constants';
+import { AppScrollView, Title, Separator, Badge } from '../components/common';
 import DevelopersList from '../components/Developers/DevelopersList';
-import { Title, Separator } from '../components/common';
 
 class RepositoryDetailsScreen extends React.Component {
   /**
@@ -16,22 +16,20 @@ class RepositoryDetailsScreen extends React.Component {
     title: 'Repository Details',
   };
 
-  static _renderBuiltBy(contributors) {
-    return <DevelopersList developers={contributors} />;
-  }
-
   render() {
     const { navigation } = this.props;
     const repository = navigation.getParam('repository');
+    const { builtBy, description, name, language, languageColor } = repository;
     return (
-      <ScrolledView>
-        <Title fontSize="24px">{repository.name}</Title>
+      <AppScrollView>
+        <Title fontSize="24px">{name}</Title>
         <Separator />
-        <RepositoryDescriptionText>{repository.description}</RepositoryDescriptionText>
+        <Badge text={language} backgroundColor={languageColor} />
+        <RepositoryDescriptionText>{description}</RepositoryDescriptionText>
         <Title fontSize="21px">Made By</Title>
         <Separator />
-        <DevelopersList developers={repository.builtBy} />
-      </ScrolledView>
+        <DevelopersList developers={builtBy} />
+      </AppScrollView>
     );
   }
 }
@@ -40,17 +38,7 @@ const RepositoryDescriptionText = styled.Text`
   color: ${Colors.textColorLight};
   font-size: 16px;
   line-height: 25;
-  margin: 0 0 ${Dimensions.smallMargin}px 0; 
-`;
-
-const ScrolledView = styled.ScrollView.attrs({
-  contentContainerStyle: {
-    paddingTop: 30,
-    marginLeft: Dimensions.defaultMargin,
-    marginRight: Dimensions.defaultMargin,
-  },
-})`
-  flex: 1;
+  margin: ${Dimensions.smallMargin}px 0 ${Dimensions.smallMargin}px 0;
 `;
 
 RepositoryDetailsScreen.propTypes = {

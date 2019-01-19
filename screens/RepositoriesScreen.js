@@ -3,12 +3,10 @@ import styled from 'styled-components';
 import { Text, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 
-import Github from '../services/Github';
-
-import { Title, Separator } from '../components/common';
+import { Github, Storage } from '../services';
+import { AppScrollView, Title, Separator } from '../components/common';
 import { Colors, Dimensions } from '../constants';
 import RepositoryList from '../components/Repositories/RepositoryList';
-import StorageService from '../services/Storage.service';
 
 /**
  * This is the home screen, the main screen that is presented to
@@ -65,25 +63,21 @@ class RepositoriesScreen extends React.Component {
   async fetchData(shouldClearData) {
     try {
       if (shouldClearData) {
-        await StorageService.deleteItems();
+        await Storage.deleteItems();
       }
       /**
        * Get repositories form the local storage.
-       * If present use them, and set them in the state.
+       * If present use them.
        */
-      const repositoryCache = await StorageService.getItem('@repositories');
+      const repositoryCache = await Storage.getItem('@repositories');
       if (repositoryCache) {
         const repositories = JSON.parse(repositoryCache);
         this.setState({ repositories, refreshing: false });
       } else {
         /**
-         * If no repositories found in the local storage,
-         * grab them from the service, and set them in the state.
+         * If no cache available, get data from the service
          */
-        const repositories = await Github.getAllTrendingRepositories();
-        const repositoriesAsJson = JSON.stringify(repositories);
-        await StorageService.saveItem('@repositories', repositoriesAsJson);
-        this.setState({ repositories, refreshing: false });
+        await this.fetchRepositories();
       }
     } catch (err) {
       /**
@@ -91,6 +85,20 @@ class RepositoriesScreen extends React.Component {
        */
       this.setState({ hasError: true, refreshing: false });
     }
+  }
+
+  async fetchRepositories() {
+    /**
+     * If no repositories found in the local storage,
+     * grab them from the service, and set them in the state.
+     */
+    const repositories = await Github.getAllTrendingRepositories();
+    const repositoriesAsJson = JSON.stringify(repositories);
+    await Storage.saveItem('@repositories', repositoriesAsJson);
+    this.setState({
+      repositories,
+      refreshing: false,
+    });
   }
 
   /**
@@ -131,7 +139,7 @@ class RepositoriesScreen extends React.Component {
     return (
       <Wrapper>
         <Container>
-          <ScrolledView refreshControl={this.renderRefreshControl()}>
+          <AppScrollView refreshControl={this.renderRefreshControl()}>
             <Title>Trending Repositories</Title>
             <Separator />
 
@@ -145,7 +153,7 @@ class RepositoriesScreen extends React.Component {
             />
 
             {this.showErrorMessages()}
-          </ScrolledView>
+          </AppScrollView>
         </Container>
       </Wrapper>
     );
@@ -160,16 +168,6 @@ const Wrapper = styled.SafeAreaView`
 const Container = styled.View`
   flex: 1;
   background-color: ${Colors.backgroundColor};
-`;
-
-const ScrolledView = styled.ScrollView.attrs({
-  contentContainerStyle: {
-    paddingTop: 30,
-    marginLeft: Dimensions.defaultMargin,
-    marginRight: Dimensions.defaultMargin,
-  },
-})`
-  flex: 1;
 `;
 
 RepositoriesScreen.propTypes = {

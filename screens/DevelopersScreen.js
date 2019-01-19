@@ -1,13 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { RefreshControl, Text } from 'react-native';
 
-import Github from '../services/Github';
+import { Github, Storage } from '../services';
 import DevelopersList from '../components/Developers/DevelopersList';
-import { Dimensions } from '../constants';
-import Title from '../components/common/Title';
-import StorageService from '../services/Storage.service';
-import Separator from '../components/common/Separator';
+import { AppScrollView, Separator, Title } from '../components/common';
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
@@ -37,9 +33,9 @@ export default class LinksScreen extends React.Component {
   async fetchData(shouldClearData) {
     try {
       if (shouldClearData) {
-        await StorageService.deleteItems();
+        await Storage.deleteItems();
       }
-      const developersCache = await StorageService.getItem('@developers');
+      const developersCache = await Storage.getItem('@developers');
       if (developersCache) {
         const developers = JSON.parse(developersCache);
         this.setState({
@@ -47,13 +43,7 @@ export default class LinksScreen extends React.Component {
           refreshing: false,
         });
       } else {
-        const developers = await Github.getAllTrendingDevelopers();
-        const developersAsJson = JSON.stringify(developers);
-        await StorageService.saveItem('@developers', developersAsJson);
-        this.setState({
-          developers,
-          refreshing: false,
-        });
+        await this.fetchDevelopers();
       }
     } catch (error) {
       this.setState({
@@ -61,6 +51,21 @@ export default class LinksScreen extends React.Component {
         refreshing: false,
       });
     }
+  }
+
+  /**
+   * Get developers data from the service.
+   *
+   * @returns {Promise<void>}
+   */
+  async fetchDevelopers() {
+    const developers = await Github.getAllTrendingDevelopers();
+    const developersAsJson = JSON.stringify(developers);
+    await Storage.saveItem('@developers', developersAsJson);
+    this.setState({
+      developers,
+      refreshing: false,
+    });
   }
 
   /**
@@ -99,22 +104,12 @@ export default class LinksScreen extends React.Component {
   render() {
     const { developers } = this.state;
     return (
-      <ScrolledView refreshControl={this.renderRefreshControl()}>
+      <AppScrollView refreshControl={this.renderRefreshControl()}>
         <Title>Trending Developers</Title>
         <Separator />
         {this.showErrorMessages()}
         <DevelopersList developers={developers} />
-      </ScrolledView>
+      </AppScrollView>
     );
   }
 }
-
-const ScrolledView = styled.ScrollView.attrs({
-  contentContainerStyle: {
-    paddingTop: 30,
-    marginLeft: Dimensions.defaultMargin,
-    marginRight: Dimensions.defaultMargin,
-  },
-})`
-  flex: 1;
-`;
