@@ -14,15 +14,13 @@ import { Avatar, Title } from '../common';
  */
 const DeveloperListItem = ({ developer }) => {
   return (
-    <View>
-      <ListItem>
-        <Avatar size="medium" source={developer.avatar} />
-        <ListItemDetail>
-          <Title fontSize="16px">{developer.name || developer.username}</Title>
-          <Text>{developer.url || developer.href}</Text>
-        </ListItemDetail>
-      </ListItem>
-    </View>
+    <ListItem>
+      <Avatar size="medium" source={developer.avatar} />
+      <ListItemDetail>
+        <Title fontSize="16px">{developer.name || developer.username}</Title>
+        <Text>{developer.url || developer.href}</Text>
+      </ListItemDetail>
+    </ListItem>
   );
 };
 

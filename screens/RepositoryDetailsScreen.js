@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Title from '../components/common/Title';
-import { Dimensions } from '../constants';
-import DeveloperListItem from '../components/Developers/DevelopersListItem';
+
+import { Dimensions, Colors } from '../constants';
 import DevelopersList from '../components/Developers/DevelopersList';
+import { Title, Separator } from '../components/common';
 
 class RepositoryDetailsScreen extends React.Component {
   /**
@@ -24,12 +24,34 @@ class RepositoryDetailsScreen extends React.Component {
     const { navigation } = this.props;
     const repository = navigation.getParam('repository');
     return (
-      <View style={{ flex: 1, margin: Dimensions.defaultMargin }}>
+      <ScrolledView>
+        <Title fontSize="24px">{repository.name}</Title>
+        <Separator />
+        <RepositoryDescriptionText>{repository.description}</RepositoryDescriptionText>
+        <Title fontSize="21px">Made By</Title>
+        <Separator />
         <DevelopersList developers={repository.builtBy} />
-      </View>
+      </ScrolledView>
     );
   }
 }
+
+const RepositoryDescriptionText = styled.Text`
+  color: ${Colors.textColorLight};
+  font-size: 16px;
+  line-height: 25;
+  margin: 0 0 ${Dimensions.smallMargin}px 0; 
+`;
+
+const ScrolledView = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    paddingTop: 30,
+    marginLeft: Dimensions.defaultMargin,
+    marginRight: Dimensions.defaultMargin,
+  },
+})`
+  flex: 1;
+`;
 
 RepositoryDetailsScreen.propTypes = {
   navigation: PropTypes.object.isRequired,

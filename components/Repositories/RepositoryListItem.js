@@ -19,6 +19,8 @@ const RepositoryListItem = ({ repository, navigation }) => (
 );
 
 const CardContent = ({ repository }) => {
+  const { language = 'No Language', languageColor } = repository;
+
   return (
     <CardBody>
       <Title numberOfLines={1} fontSize="24px">
@@ -27,17 +29,10 @@ const CardContent = ({ repository }) => {
       <CardText numberOfLines={3}>
         {repository.description || '🔎 This project has no description.'}
       </CardText>
-      <BadgeContent repository={repository} />
+      <Badge text={language} backgroundColor={languageColor} />
     </CardBody>
   );
 };
-
-const BadgeContent = ({ repository }) => (
-  <Badge
-    text={repository.language || 'No Language'}
-    backgroundColor={repository.languageColor}
-  />
-);
 
 const CardBody = styled.View`
   height: 100%;
@@ -60,10 +55,6 @@ const RepositoryItem = styled.View`
 `;
 
 CardContent.propTypes = {
-  repository: PropTypes.object.isRequired,
-};
-
-BadgeContent.propTypes = {
   repository: PropTypes.object.isRequired,
 };
 
