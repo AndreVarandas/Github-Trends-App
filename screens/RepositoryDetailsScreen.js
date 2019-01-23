@@ -1,4 +1,5 @@
 import React from 'react';
+import { Linking, Button } from 'react-native';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -19,13 +20,26 @@ class RepositoryDetailsScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     const repository = navigation.getParam('repository');
-    const { builtBy, description, name, language, languageColor } = repository;
+    const {
+      builtBy,
+      description,
+      name,
+      language,
+      languageColor,
+      url,
+    } = repository;
     return (
       <AppScrollView>
         <Title fontSize="24px">{name}</Title>
         <Separator />
         <Badge text={language} backgroundColor={languageColor} />
         <RepositoryDescriptionText>{description}</RepositoryDescriptionText>
+        <ReadMore>
+          <ReadMoreButton
+            title="View in the browser"
+            onPress={() => Linking.openURL(url)}
+          />
+        </ReadMore>
         <Title fontSize="21px">Made By</Title>
         <Separator />
         <DevelopersList developers={builtBy} />
@@ -40,6 +54,12 @@ const RepositoryDescriptionText = styled.Text`
   line-height: 25;
   margin: ${Dimensions.smallMargin}px 0 ${Dimensions.smallMargin}px 0;
 `;
+
+const ReadMore = styled.View`
+  margin: ${Dimensions.smallMargin}px 0 ${Dimensions.defaultMargin}px 0;
+`;
+
+const ReadMoreButton = styled.Button``;
 
 RepositoryDetailsScreen.propTypes = {
   navigation: PropTypes.object.isRequired,

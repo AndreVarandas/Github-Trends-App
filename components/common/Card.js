@@ -14,8 +14,7 @@ const CardWrapper = styled.View`
   border: 1px solid #fff;
   border-radius: 6px;
   background-color: ${Colors.darkerBackgroundColor};
-  min-height: 200px;
-  max-height: 200px;
+  min-height: 150px;
   padding: ${Dimensions.defaultPadding}px;
 `;
 

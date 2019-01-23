@@ -23,10 +23,10 @@ const CardContent = ({ repository }) => {
 
   return (
     <CardBody>
-      <Title numberOfLines={1} fontSize="24px">
+      <Title fontSize="24px">
         {repository.name}
       </Title>
-      <CardText numberOfLines={3}>
+      <CardText>
         {repository.description || '🔎 This project has no description.'}
       </CardText>
       <Badge text={language} backgroundColor={languageColor} />
@@ -35,7 +35,6 @@ const CardContent = ({ repository }) => {
 };
 
 const CardBody = styled.View`
-  height: 100%;
   justify-content: space-between;
   align-items: flex-start;
 `;
