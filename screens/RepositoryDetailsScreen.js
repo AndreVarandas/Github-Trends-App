@@ -24,7 +24,7 @@ class RepositoryDetailsScreen extends React.Component {
       builtBy,
       description,
       name,
-      language,
+      language = 'No Language',
       languageColor,
       url,
     } = repository;

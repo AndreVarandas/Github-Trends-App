@@ -6,14 +6,13 @@ import DevelopersList from '../components/Developers/DevelopersList';
 import { AppScrollView, Separator, Title } from '../components/common';
 
 export default class LinksScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Developers',
-    headerStyle: { borderBottomWidth: 0 },
-  };
-
   constructor(props) {
     super(props);
-    this.state = { developers: [], hasError: false, refreshing: false };
+    this.state = {
+      developers: [],
+      hasError: false,
+      refreshing: false,
+    };
   }
 
   async componentWillMount() {
@@ -29,6 +28,11 @@ export default class LinksScreen extends React.Component {
     this.setState({ refreshing: true });
     await this.fetchData(true);
   }
+
+  static navigationOptions = {
+    title: 'Developers',
+    headerStyle: { borderBottomWidth: 0 },
+  };
 
   async fetchData(shouldClearData) {
     try {

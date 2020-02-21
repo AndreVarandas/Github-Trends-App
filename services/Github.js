@@ -4,6 +4,9 @@ import {
   fetchDevelopers,
 } from '@huchenme/github-trending';
 
+/**
+ * TODO: Actually implement error handlers...
+ */
 export default class Github {
   static async getAllTrendingLanguages() {
     try {
