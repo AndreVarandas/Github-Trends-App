@@ -8,10 +8,8 @@ Repositories               |  Details                  |  Developers
 
 This is a simple react native app that shows you latest Github trending repositories, developers and languages.
 
-Made a some time ago, when I was exploring react native and playing along with [expo.io](https://expo.io) - and now I have decided to make it public.
+Made a some time ago, when I was exploring react native and playing along with [expo.io](https://expo.io) - and now I have decided to make it public and available using the expo link - [https://expo.io/@varandas/ghtrend](https://expo.io/@varandas/ghtrend)
 
 Credit to the missing Github trending API made by huchenme available at [https://github.com/huchenme/github-trending-api](https://github.com/huchenme/github-trending-api)
-
----
 
 [MIT - André Varandas](LICENSE)
