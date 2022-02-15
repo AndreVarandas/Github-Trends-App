@@ -1,8 +1,6 @@
 /* eslint-disable global-require */
 import React from 'react';
-import {
-  Platform, StatusBar, StyleSheet, View,
-} from 'react-native';
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
@@ -32,7 +30,7 @@ export default class App extends React.Component {
     ]);
   };
 
-  _handleLoadingError = (error) => {
+  _handleLoadingError = error => {
     // In this case, you might want to report the error to your error
     // reporting service, for example Sentry
     console.warn(error);

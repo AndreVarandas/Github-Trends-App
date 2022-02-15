@@ -23,9 +23,7 @@ const CardContent = ({ repository }) => {
 
   return (
     <CardBody>
-      <Title fontSize="24px">
-        {repository.name}
-      </Title>
+      <Title fontSize="24px">{repository.name}</Title>
       <CardText>
         {repository.description || '🔎 This project has no description.'}
       </CardText>
